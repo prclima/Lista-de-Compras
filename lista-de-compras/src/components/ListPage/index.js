@@ -34,15 +34,15 @@ return(
             
             <Card style={{ width: "18rem" }} >
             <Card.Body>
-              <Card.Title>{cE.name}</Card.Title>
+              <Card.Title>{cE.nomeLista}</Card.Title>
               
-              <Link to={`/list/${cE._id}`} >
+              {/* <Link to={`/list/${cE._id}`} > */}
                 <Card.Link>Ver</Card.Link>
-              </Link>
+              {/* </Link> */}
 
-              <Link to={`/edit/${cE._id}`} >
+              {/* <Link to={`/edit/${cE._id}`} > */}
                 <Card.Link>Editar</Card.Link>
-              </Link>
+              {/* </Link> */}
 
               <button>
                 Deletar Lista
