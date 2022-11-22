@@ -1,0 +1,8 @@
+.infoProduto {
+    margin-left: 350px;
+    width: 600px;
+    height: 390px;
+    padding: 5px;
+    border: solid black 1px;
+    border-radius: 15px;
+}

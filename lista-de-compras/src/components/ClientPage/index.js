@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import style from './style.module.css'
 
 export function ClientPage() {
     const params= useParams();
@@ -25,14 +26,18 @@ export function ClientPage() {
       return (
 
         <>
-            <h1>{list1.nomeLista}</h1>
-            <p>{list1.telefone}</p>
-            <p>{list1.nomeMercado}</p>
-            <p>{list1.produtos}</p>
+        <div className={style.infoProduto}> 
+            <h1>Nome da Lista: {list1.nomeLista}</h1>
+            <p><strong> Telefone:</strong> {list1.telefone}</p>
+            <p><strong>Nome do Mercado:</strong> {list1.nomeMercado}</p>
+            <p><strong>Lista de Produtos:</strong> {list1.produtos}</p>
+        </div>
+
+        <div  className={style.bntVoltar}>
       <Link to="/listPage" className="btn btn-outline-primary">
         Voltar
       </Link>
-
+      </div>
 
 
         </>
