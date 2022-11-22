@@ -1,16 +1,22 @@
 import './App.css';
 import Formulario from './components/formulario';
 import {ListPage}  from './components/ListPage';
+import { Routes, Route } from "react-router-dom";
+
 
 
 function App() {
   return (
     <div>
-     <Formulario />
+     
+     <Routes>
+     
+     <Route path="/" element={<Formulario />} />
 
-     <ListPage/>
+     <Route path="listPage" element={<ListPage/>} />
 
      
+     </Routes>
     </div>
   );
 }

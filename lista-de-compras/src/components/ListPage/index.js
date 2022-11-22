@@ -32,19 +32,20 @@ return(
         {list.map((cE) =>{
         return (
             
-            <Card style={{ width: "18rem" }} >
+            <Card style={{ width: "18rem" }} className="m-2" >
             <Card.Body>
               <Card.Title>{cE.nomeLista}</Card.Title>
               
+           
               {/* <Link to={`/list/${cE._id}`} > */}
-                <Card.Link>Ver</Card.Link>
+                <Card.Link className="m-2">Ver</Card.Link>
               {/* </Link> */}
 
               {/* <Link to={`/edit/${cE._id}`} > */}
-                <Card.Link>Editar</Card.Link>
+                <Card.Link className="m-2">Editar</Card.Link>
               {/* </Link> */}
 
-              <button>
+              <button className="m-2">
                 Deletar Lista
               </button>
             </Card.Body>
