@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import style from "./style.module.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -54,3 +55,7 @@ export function ClientPage() {
     </>
   );
 }
+
+
+export function ClientPage() {
+    
