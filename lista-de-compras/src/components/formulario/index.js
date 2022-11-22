@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import Col from 'react-bootstrap/Col';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Stack from 'react-bootstrap/Stack';
+
+import style from './style.module.css'
 import { Link } from "react-router-dom";
 
 function Formulario() {
@@ -44,22 +44,27 @@ function Formulario() {
   return (
     <>
    
-    <h1> Dados da Lista</h1>
-    <Form>
-    <Row className="col-md-9">
-    <Stack direction="horizontal" gap={3}>
-      <Col>
-       
-        <FloatingLabel  controlId="nomeLista" label="Informe o nome da lista" >
-          <Form.Control type="text"   name="nomeLista" value={form.nomeLista} onChange={HandleChange}/>
-        </FloatingLabel>
-      </Col>
-      <Col >
-        <FloatingLabel controlId="telefone" label="Informe o telefone para contato" >
-          <Form.Control type="number" name="telefone" value={form.telefone} onChange={HandleChange}/>
-        </FloatingLabel>
-      </Col>
-      <Col >
+   <div className={style.cabecalho}>
+        <h1>Dados da Lista</h1>
+      </div>
+
+      <div className={style.formulario}>
+    <Form >
+    <Form.Group as={Row} className="mb-1" controlId="basic">
+        <Form.Label column sm="2"> Nome da Lista</Form.Label>
+        <Col sm="10">
+          <Form.Control column sm="2" className={style.input} type="text"   placeholder="Informe o nome da lista" name="nomeLista" value={form.nomeLista} onChange={HandleChange}/>
+          </Col>
+          </Form.Group>    
+      
+          <Form.Group as={Row} className="mb-1" controlId="basic">
+        <Form.Label column sm="2"> Telefone </Form.Label>
+        <Col sm="10">
+          <Form.Control className={style.input} type="number" placeholder="Informe o telefone para contato" name="telefone" value={form.telefone} onChange={HandleChange}/>
+          </Col>
+          </Form.Group>
+          <Form.Label> Escolha seu Mercado </Form.Label>
+          <Form.Group className="mb-2" controlId="basic">
         <Form.Select aria-label="Informe o mercado de preferencia" controlId="nomeMercado" onChange={HandleChange} name="nomeMercado"  >
       <option selected >Mercados</option>
       <option value="Pão de Açucar">Pão de Açucar</option>
@@ -82,15 +87,16 @@ function Formulario() {
       <option value="Walmart">Walmart</option>
       <option value="Outro">Outro</option>
     </Form.Select>
-      </Col>
-      <Col md>
-        <FloatingLabel controlId="produtos" label="Faça sua lista" >
-          <Form.Control type="text" name="produtos" onChange={HandleChange}/>
-        </FloatingLabel>
-      </Col>
-      <Button variant="primary" type="submit" onClick={HandleSubmit}>Enviar</Button>
-      </Stack>
-    </Row>
+    </Form.Group>
+
+     <Form.Group className="mb-3" controlId="basic">
+        <Form.Label>Faça sua lista </Form.Label>
+          <Form.Control as="textarea" rows={3} className={style.input} type="text" placeholder="Anotou tudo?" name="produtos" onChange={HandleChange}/>
+          </Form.Group>
+     
+      <Button className={style.bntCadastro} variant="primary" type="submit" onClick={HandleSubmit}>Enviar</Button>
+      
+    
 </Form>
 
 
@@ -98,6 +104,7 @@ function Formulario() {
         Página de pedidos.
      </Link>
 
+</div>
 </>
   )
 }
