@@ -29,7 +29,7 @@ export function ClientPage() {
 
   return (
     <>
-    <div style={{ backgroundImage: `url(${background2})` , height: '100vh'}}>
+    <div style={{ backgroundImage: `url(${background2})` , height: '100vh', width: '100vw'}}>
       <Card className={style.infoProduto} style={{width: "400px"}}>
         <Card.Body>
           <Card.Title className="text-center">
