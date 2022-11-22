@@ -17,13 +17,12 @@ function Formulario() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+       await axios.post(
         "https://ironrest.cyclic.app/lista_compras",
         form
       );
-      
-        console.log(setForm);
-      
+
+      console.log(setForm);
     } catch (err) {
       console.log(err);
     }
@@ -31,13 +30,15 @@ function Formulario() {
   }
 
   return (
+    <>
+    <h1> Dados da Lista</h1>
     <form>
-      <label htmlFor="nomeLista"> Nome da Lista:</label>
+      <label htmlFor="nomeLista">Nome da Lista:</label>
       <input
-        type="text"
-        placeholder="Informe o nome da lista"
-        value={form.nomeLista}
         name="nomeLista"
+        type="text"
+        value={form.nomeLista}
+        placeholder="Informe o nome da lista"
         onChange={HandleChange}
       />
 
@@ -59,10 +60,16 @@ function Formulario() {
       />
 
       <label htmlFor="produtos"> Produtos</label>
-    <input type="text" placeholder="Faça sua lista"  name="produtos" onChange={HandleChange}/>
+      <input
+        type="text"
+        placeholder="Faça sua lista"
+        name="produtos"
+        onChange={HandleChange}
+      />
 
       <button onClick={HandleSubmit}>Enviar</button>
     </form>
+    </>
   );
 }
 export default Formulario;
