@@ -1,8 +1,12 @@
 .infoProduto {
-    margin-left: 350px;
+    margin-left: 20px;
+    margin-top:20px;
     width: 600px;
     height: 390px;
-    padding: 5px;
-    border: solid black 1px;
-    border-radius: 15px;
-}
+    padding: 0px;
+ }
+
+.btnVoltar {
+    margin-left: 300px;
+    margin-bottom: auto;
+} 
