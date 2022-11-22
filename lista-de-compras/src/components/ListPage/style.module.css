@@ -1,0 +1,11 @@
+.card {
+    background: #5d8bff;
+background: -webkit-linear-gradient(0deg, #7a9cf4 0%, rgba(71, 114, 255, 0.21) 100%);
+background: linear-gradient(0deg, #7d9dee 0%, rgba(216, 224, 249, 0.21) 100%);
+border: none;
+
+}
+
+.flexbox {
+    display: flex;
+}

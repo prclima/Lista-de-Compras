@@ -2,10 +2,11 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import style from "./style.module.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import background2 from "../img/img3.png"
+
 
 export function ClientPage() {
   const params = useParams();
@@ -28,6 +29,7 @@ export function ClientPage() {
 
   return (
     <>
+    <div style={{ backgroundImage: `url(${background2})` , height: '100vh'}}>
       <Card className={style.infoProduto} style={{width: "400px"}}>
         <Card.Body>
           <Card.Title className="text-center">
@@ -52,6 +54,7 @@ export function ClientPage() {
          </Link>
         </Card.Body>
       </Card>
+      </div>
     </>
   );
 }
