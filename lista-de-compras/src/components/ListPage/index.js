@@ -37,9 +37,9 @@ return(
               <Card.Title>{cE.nomeLista}</Card.Title>
               
            
-              {/* <Link to={`/list/${cE._id}`} > */}
+              <Link to={`/listPage/${cE._id}`} >
                 <Card.Link className="m-2">Ver</Card.Link>
-              {/* </Link> */}
+              </Link>
 
               {/* <Link to={`/edit/${cE._id}`} > */}
                 <Card.Link className="m-2">Editar</Card.Link>
