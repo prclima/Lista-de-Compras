@@ -25,6 +25,17 @@ export function ListPage() {
 
 
 
+      async function handleDelete(id) {
+          try{
+            axios.delete(`https://ironrest.cyclic.app/lista_compras/${id}`)
+          } catch(err){
+            console.log(err);
+          }
+
+      }
+
+
+
 return(
     <>
         <h1>Lista de compras!</h1>
@@ -52,7 +63,9 @@ return(
                
                 
                 
-              <button className="m-2">
+              <button onClick={()=>{
+                handleDelete(cE._id)
+              }} className="m-2">
                 Apagar Lista
               </button>
             </Card.Body>
