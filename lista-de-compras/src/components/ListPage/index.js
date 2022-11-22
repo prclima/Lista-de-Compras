@@ -53,7 +53,7 @@ return(
                 
                 
               <button className="m-2">
-                Deletar Lista
+                Apagar Lista
               </button>
             </Card.Body>
           </Card>
