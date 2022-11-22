@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
+import { Link } from "react-router-dom";
 
 function Formulario() {
   const [form, setForm] = useState({
@@ -91,6 +92,12 @@ function Formulario() {
       </Stack>
     </Row>
 </Form>
+
+
+<Link to="/listPage" className="m-2 mt-5 btn btn-outline-primary">
+        Página de pedidos.
+     </Link>
+
 </>
   )
 }

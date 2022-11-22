@@ -29,6 +29,10 @@ return(
     <>
         <h1>Lista de compras!</h1>
 
+        <Link to="/" className="m-2 btn btn-outline-primary">
+                    Início
+                </Link>
+
         {list.map((cE) =>{
         return (
             
@@ -45,6 +49,9 @@ return(
                 <Card.Link className="m-2">Editar</Card.Link>
               {/* </Link> */}
 
+               
+                
+                
               <button className="m-2">
                 Deletar Lista
               </button>
