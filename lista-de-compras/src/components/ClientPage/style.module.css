@@ -3,6 +3,10 @@
     padding-top:1px;
     width: 600px;
     height: 290px;
+    background: none; 
+    /* background: -webkit-linear-gradient(0deg, #cedcff 0%, rgba(71, 114, 255, 0.21) 100%);
+    background: linear-gradient(0deg, #cbd9fc 0%, rgba(255, 255, 255, 0.21) 100%); */ 
+    border: solid;
    
  }
 
@@ -10,3 +14,4 @@
     margin-left: 300px;
     margin-bottom: auto;
 } 
+

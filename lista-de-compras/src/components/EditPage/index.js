@@ -1,52 +1,65 @@
-import { useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import style from "./style.module.css";
 import { Link } from "react-router-dom";
-import background from "../img/img1.png";
+import background5 from "../img/img5.png";
 
-function Formulario() {
-  const [form, setForm] = useState({
+function EditPage() {
+  const params = useParams();
+
+  const [editForm, setEditForm] = useState({
     nomeLista: "",
     telefone: 0,
     nomeMercado: "",
     produtos: [],
   });
 
-  function HandleChange(e) {
-    if (e.target.name === "nomeMercado") {
-      setForm({ ...form, nomeMercado: e.target.selected });
+  useEffect(() => {
+    async function EditData() {
+      try {
+        const response = await axios.get(
+          `https://ironrest.cyclic.app/lista_compras/${params.id}`
+        );
+        setEditForm(response.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
+    EditData();
+  }, []);
 
-    setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(e.target);
+  function HandleChange(e) {
+    setEditForm({ ...editForm, [e.target.name]: e.target.value });
   }
 
   async function HandleSubmit(e) {
     e.preventDefault();
 
     try {
-      await axios.post("https://ironrest.cyclic.app/lista_compras", form);
-
-      console.log(setForm);
+      const infoSemId = { ...editForm };
+      delete editForm._id;
+      const response = await axios.put(
+        `https://ironrest.cyclic.app/lista_compras/${params.id}`,
+        infoSemId
+      );
     } catch (err) {
       console.log(err);
     }
-    HandleSubmit();
   }
-
   return (
     <>
-      <div className={style.back} style={{ backgroundImage: `url(${background})` , height: '100vh'}}>
+       <div className={style.back} style={{ backgroundImage: `url(${background5})` , height: '100vh'}}>
         <div className={style.cabecalho}>
-          <h1>Dados da Lista</h1>
+          <h1>Editar Lista</h1>
         </div>
 
         <div className={style.formulario}>
-          <Form>
+          <Form onSubmit={HandleSubmit}>
             <Form.Group as={Row} className="mb-1" controlId="basic">
               <Form.Label column sm="2">
                 {" "}
@@ -54,13 +67,14 @@ function Formulario() {
               </Form.Label>
               <Col sm="10">
                 <Form.Control
+                  disabled
                   column
                   sm="2"
                   className={style.input}
                   type="text"
                   placeholder="Informe o nome da lista"
                   name="nomeLista"
-                  value={form.nomeLista}
+                  value={editForm.nomeLista}
                   onChange={HandleChange}
                 />
               </Col>
@@ -77,7 +91,7 @@ function Formulario() {
                   type="number"
                   placeholder="Informe o telefone para contato"
                   name="telefone"
-                  value={form.telefone}
+                  value={editForm.telefone}
                   onChange={HandleChange}
                 />
               </Col>
@@ -87,10 +101,11 @@ function Formulario() {
               <Form.Select
                 aria-label="Informe o mercado de preferencia"
                 controlId="nomeMercado"
+                value={editForm.nomeMercado}
                 onChange={HandleChange}
                 name="nomeMercado"
               >
-                <option selected>Mercados</option>
+                <option selected>{editForm.nomeMercado}</option>
                 <option value="Pão de Açucar">Pão de Açucar</option>
                 <option value="Extra">Extra</option>
                 <option value="Mambo">Mambo</option>
@@ -122,11 +137,13 @@ function Formulario() {
                 rows={3}
                 className={style.input}
                 type="text"
+                value={editForm.produtos}
                 placeholder="Anotou tudo?"
                 name="produtos"
                 onChange={HandleChange}
               />
             </Form.Group>
+            <div>
             <Link to="/listPage" >
             <Button  className={style.pgCadastro}>
             
@@ -134,19 +151,22 @@ function Formulario() {
             
              </Button>
              </Link>
+          
             <Button
               className={style.bntCadastro}
               variant="primary"
               type="submit"
               onClick={HandleSubmit}
             >
-              Enviar
+              Alterar
             </Button>
-
+          
+            </div>
           </Form>
         </div>
       </div>
     </>
   );
 }
-export default Formulario;
+
+export default EditPage;
