@@ -5,10 +5,13 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import style from "./style.module.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import background from "../img/img1.png";
+import toast from "react-hot-toast";
+
 
 function Formulario() {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     nomeLista: "",
     telefone: 0,
@@ -16,13 +19,15 @@ function Formulario() {
     produtos: [],
   });
 
+  const [list, setList] = useState(""); 
+
   function HandleChange(e) {
     if (e.target.name === "nomeMercado") {
       setForm({ ...form, nomeMercado: e.target.selected });
     }
 
     setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(e.target);
+   
   }
 
   async function HandleSubmit(e) {
@@ -31,7 +36,9 @@ function Formulario() {
     try {
       await axios.post("https://ironrest.cyclic.app/lista_compras", form);
 
-      console.log(setForm);
+
+      toast.success('Lista Cadastrada!')
+      navigate("/listPage")
     } catch (err) {
       console.log(err);
     }
@@ -40,7 +47,10 @@ function Formulario() {
 
   return (
     <>
-      <div className={style.back} style={{ backgroundImage: `url(${background})` , height: '100vh'}}>
+      <div
+        className={style.back}
+        style={{ backgroundImage: `url(${background})`, height: "100vh" }}
+      >
         <div className={style.cabecalho}>
           <h1>Dados da Lista</h1>
         </div>
@@ -115,34 +125,83 @@ function Formulario() {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="basic">
+            <Form.Group >
               <Form.Label>Faça sua lista </Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                className={style.input}
-                type="text"
-                placeholder="Anotou tudo?"
-                name="produtos"
-                onChange={HandleChange}
-              />
+              <Button
+                  type="button"
+                  size="sm"
+                  variant="outline-success"
+                  style={{marginLeft: '7px', marginBottom: '3px'}}
+                    onClick={() => {
+                      setForm({ ...form, produtos: [...form.produtos, list] })
+                      setList(...form)
+                   
+                    }}
+                  >
+                    Adicionar
+                  </Button>
+                  <Button
+                  type="button"
+                  variant="outline-danger"
+                  size="sm"
+                  style={{marginBottom: '3px', marginLeft: '7px'}}
+                    onClick={() => {
+                    
+                      setForm({ ...form, produtos: [...list]});
+                    }}
+                  >
+                 
+                    Excluir tudo?
+                  </Button>  
+                 
+              <Col sm="6">
+                <Form.Control
+                  className={style.input}
+                  type="text"
+                  placeholder="O que precisamos?"
+                  name="produtos"
+                   onChange={(e) => {
+                    setList(e.target.value);
+                  }} 
+                  
+                />
+                
+              </Col>
             </Form.Group>
-            <Link to="/listPage" >
-            <Button  className={style.pgCadastro}>
+            <div style={{maxWidth:'600px', maxHeight: '580px'}}>
             
-              Página de pedidos
+                  
             
-             </Button>
-             </Link>
+              {form.produtos.map((item) => (
+               <>
+                  <textarea
+                    style={{
+                      width: "105px",
+                      height: "30px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    {item}
+                  </textarea>
+                 
+                  </>
+                  ))}
+                  <Link to="/listPage">
+              <Button className={style.pgCadastro} variant="warning" size="sm" style={{width: '120px', margin: '15px'}}>Todas as Listas</Button>
+            </Link>
             <Button
               className={style.bntCadastro}
               variant="primary"
               type="submit"
+              size="sm"
+              style={{width: '80px', marginRigth: '5px'}}
               onClick={HandleSubmit}
             >
               Enviar
             </Button>
-
+            </div>
+          
+           
           </Form>
         </div>
       </div>
@@ -150,3 +209,4 @@ function Formulario() {
   );
 }
 export default Formulario;
+

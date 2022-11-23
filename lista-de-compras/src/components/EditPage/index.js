@@ -6,11 +6,13 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import style from "./style.module.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import background5 from "../img/img5.png";
+import toast from "react-hot-toast";
 
 function EditPage() {
   const params = useParams();
+  const navigate = useNavigate()
 
   const [editForm, setEditForm] = useState({
     nomeLista: "",
@@ -47,6 +49,8 @@ function EditPage() {
         `https://ironrest.cyclic.app/lista_compras/${params.id}`,
         infoSemId
       );
+      toast.success('Lista Alterada!')
+      navigate("/listPage")
     } catch (err) {
       console.log(err);
     }
@@ -145,7 +149,8 @@ function EditPage() {
             </Form.Group>
             <div>
             <Link to="/listPage" >
-            <Button  className={style.pgCadastro}>
+            <Button  className={style.pgCadastro}
+            variant="warning">
             
               Página de pedidos
             
@@ -154,7 +159,8 @@ function EditPage() {
           
             <Button
               className={style.bntCadastro}
-              variant="primary"
+              
+              variant ="success"
               type="submit"
               onClick={HandleSubmit}
             >
