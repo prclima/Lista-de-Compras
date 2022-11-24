@@ -7,7 +7,7 @@
 .formulario {
     margin-left: 350px;
     width: 600px;
-    height: 390px;
+    height: 590px;
     padding: 5px;
     border: solid black 1px;
     border-radius: 15px;
@@ -23,12 +23,24 @@
 }
 
 .bntCadastro {
-  margin-left: 480px;
+  
   width: 100px;
-  margin-top: -67px;
+  margin-top: 5px;
+ 
+
+  
+  
 }
 
 .pgCadastro {
-margin-left: 280px;
-width: 190px;
+
+width: 170px;
+margin-top: 15px;
+
+
 }
+
+/* .textArea 
+  display: flex;
+  flex-direction: row;
+   */

@@ -5,6 +5,8 @@ import Card from "react-bootstrap/Card";
 import background3 from "../img/img4.png";
 import style from "./style.module.css";
 import Button from "react-bootstrap/Button";
+import toast from "react-hot-toast";
+
 
 
 export function ListPage() {
@@ -31,6 +33,7 @@ export function ListPage() {
     try {
       axios.delete(`https://ironrest.cyclic.app/lista_compras/${id}`);
       setIsDeleted(true)
+      toast.success('Lista Deletada')
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +50,7 @@ export function ListPage() {
           width: "100vw",
         }}
       >
-        <h1>Lista de compras!</h1>
+        <h1>Todas as Listas</h1>
 
         <Link to="/" className="m-2 btn btn-outline-primary">
           Início

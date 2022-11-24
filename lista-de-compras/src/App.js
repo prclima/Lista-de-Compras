@@ -4,6 +4,7 @@ import {ListPage}  from './components/ListPage';
 import { Routes, Route } from "react-router-dom";
 import {ClientPage} from  "./components/ClientPage";
 import EditPage from "./components/EditPage/index";
+import {Toaster} from 'react-hot-toast'
 
 
 
@@ -16,7 +17,7 @@ function App() {
    
     
     <div>
-     
+    <div> <Toaster/>
      <Routes>
      
      <Route path="/" element={<Formulario />} />
@@ -28,7 +29,7 @@ function App() {
     <Route path="/editPage/:id" element={<EditPage />} />
      </Routes>
 
-
+</div>
      
 
     </div>
